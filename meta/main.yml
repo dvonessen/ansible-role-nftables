@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Daniel von Essen
+  description: This role configures linux netfilter through nftables commandline interface.
+  license: MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: CentOS
+      versions:
+       - 8
+    - name: Debian
+      versions:
+        - 10
+
+  galaxy_tags: [security, filrewalling, system, nft, nftables, iptables, filter, netfilter]
+
+dependencies: []
