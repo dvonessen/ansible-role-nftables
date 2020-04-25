@@ -1,1 +1,43 @@
 ---
+- name: include os dependent variables
+  include_vars: "{{ lookup('first_found', vars_files) }}"
+  vars:
+    vars_files:
+      files:
+        - "{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      paths:
+        - "vars"
+  tags:
+    - always
+
+- name: import disable_firewalls
+  import_tasks: disable_firewalls.yml
+  become: true
+  tags:
+    - nftables_all
+    - nftables_disable_foreign_firewalls
+
+- name: import install.yml
+  import_tasks: install.yml
+  become: true
+  tags:
+    - nftables_all
+    - nftables_install
+
+- name: import configure.yml
+  import_tasks: configure.yml
+  become: true
+  tags:
+    - nftables_all
+    - nftables_configure
+
+- name: enable and start nftables service
+  systemd:
+    name: nftables.service
+    state: started
+    enabled: yes
+  become: true
+  tags:
+    - always

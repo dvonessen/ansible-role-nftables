@@ -2,6 +2,5 @@
 - name: Converge
   hosts: all
   remote_user: ansible
-  debugger: on_failed
   roles:
     - role: ansible-role-nftables

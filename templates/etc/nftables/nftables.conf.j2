@@ -1,0 +1,44 @@
+#!/usr/sbin/nft -f
+
+# {{ ansible_managed }}
+
+# clear all prior state
+flush ruleset
+
+table inet filter {
+  chain input {
+    type filter hook input priority 0;
+    policy {{ nftables_config_input_policy }};
+
+    {% if nftables_default_configuration -%}
+    ct state invalid drop
+    ct state established,related accept
+    iif "lo" accept
+    {% endif %}
+
+    {% for input in nftables_config_input_rules -%}
+    {{ input }}
+    {% endfor %}
+
+  }
+
+  chain forward {
+    type filter hook forward priority 0;
+    policy {{ nftables_config_forward_policy }};
+
+    {% for forward in nftables_config_forward_rules -%}
+    {{ forward }}
+    {% endfor %}
+
+  }
+
+  chain output {
+    type filter hook output priority 0;
+    policy {{ nftables_config_output_policy }};
+
+    {% for output in nftables_config_output_rules -%}
+    {{ output }}
+    {% endfor %}
+
+  }
+}

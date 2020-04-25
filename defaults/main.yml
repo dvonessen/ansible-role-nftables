@@ -1,1 +1,11 @@
 ---
+nftables_default_configuration: true
+nftables_config_input_policy: drop
+nftables_config_input_rules:
+  - tcp dport 22 counter accept
+
+nftables_config_forward_policy: drop
+nftables_config_forward_rules: []
+
+nftables_config_output_policy: accept
+nftables_config_output_rules: []

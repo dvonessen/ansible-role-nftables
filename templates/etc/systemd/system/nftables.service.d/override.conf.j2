@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+[Service]
+ExecStart=
+ExecStart=/usr/sbin/nft -f /etc/nftables/nftables.conf
+ExecReload=
+ExecReload=/usr/sbin/nft -f /etc/nftables/nftables.conf

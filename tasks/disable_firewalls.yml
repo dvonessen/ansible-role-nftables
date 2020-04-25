@@ -1,0 +1,33 @@
+---
+- name: get all available services
+  service_facts:
+
+- name: remove firewalld
+  block:
+    - name: disable and mask firewalld
+      systemd:
+        name: firewalld.service
+        state: stopped
+        enabled: no
+        masked: yes
+      when: "'firewalld.service' in ansible_facts.services"
+
+    - name: remove firewalld package
+      package:
+        name: firewalld
+        state: absent
+
+- name: remove ufw (uncompilcated firewall)
+  block:
+    - name: disable and mask ufw
+      systemd:
+        name: ufw.service
+        state: stopped
+        enabled: no
+        masked: yes
+      when: "'ufw.service' in ansible_facts.services"
+
+    - name: remove ufw package
+      package:
+        name: ufw
+        state: absent
