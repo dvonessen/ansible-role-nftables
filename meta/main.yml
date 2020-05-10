@@ -7,12 +7,12 @@ galaxy_info:
   min_ansible_version: 2.9
 
   platforms:
-    - name: CentOS
+    - name: EL
       versions:
        - 8
     - name: Debian
       versions:
-        - 10
+        - buster
 
   galaxy_tags: [security, filrewalling, system, nft, nftables, iptables, filter, netfilter]
 
