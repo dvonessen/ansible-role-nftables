@@ -1,10 +1,7 @@
----
 dependency:
   name: galaxy
 driver:
   name: vagrant
-  provider:
-    name: virtualbox
 platforms:
   - name: nftablescentos8
     box: centos/8
@@ -24,8 +21,6 @@ provisioner:
     defaults:
       stdout_callback: yaml
       interpreter_python: auto_silent
-verifier:
-  name: ansible
 lint: |
   set -e
   yamllint -c .yamllint .

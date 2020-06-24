@@ -10,12 +10,12 @@
         state: stopped
         enabled: no
         masked: yes
-      when: "'firewalld.service' in ansible_facts.services"
 
     - name: remove firewalld package
       package:
         name: firewalld
         state: absent
+  when: "'firewalld.service' in ansible_facts.services"
 
 - name: remove ufw (uncompilcated firewall)
   block:
@@ -25,9 +25,9 @@
         state: stopped
         enabled: no
         masked: yes
-      when: "'ufw.service' in ansible_facts.services"
 
     - name: remove ufw package
       package:
         name: ufw
         state: absent
+  when: "'ufw.service' in ansible_facts.services"
