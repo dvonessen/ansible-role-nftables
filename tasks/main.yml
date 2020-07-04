@@ -10,7 +10,10 @@
       paths:
         - "vars"
   tags:
-    - always
+    - nftables_all
+    - nftables_disable_foreign_firewalls
+    - nftables_install
+    - nftables_configure
 
 - name: import disable_firewalls
   import_tasks: disable_firewalls.yml
@@ -40,4 +43,7 @@
     enabled: yes
   become: true
   tags:
-    - always
+    - nftables_all
+    - nftables_disable_foreign_firewalls
+    - nftables_install
+    - nftables_configure
