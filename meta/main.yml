@@ -9,11 +9,15 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-       - 8
+        - 8
     - name: Debian
       versions:
         - buster
+    - name: ArchLinux
+      versions:
+        - Any
 
-  galaxy_tags: [security, filrewalling, system, nft, nftables, iptables, filter, netfilter]
+  galaxy_tags:
+    [security, filrewalling, system, nft, nftables, iptables, filter, netfilter]
 
 dependencies: []
